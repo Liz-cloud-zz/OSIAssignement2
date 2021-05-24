@@ -66,7 +66,7 @@ public class OS1Assignment {
             file_output.add(Long.toHexString(result));
         }
         try (
-                FileOutputStream outputStream=new FileOutputStream("output-OS1)");
+                FileOutputStream outputStream=new FileOutputStream("output-OS1.txt");
                 DataOutputStream dataOutputStream=new DataOutputStream(outputStream);
                 ){
             for (int i=0;i<file_output.size();i++){
