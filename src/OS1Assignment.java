@@ -2,6 +2,7 @@ import jdk.jfr.Unsigned;
 import sun.util.resources.cldr.om.LocaleNames_om;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.lang.*;
 import java.text.DecimalFormat;
@@ -47,7 +48,7 @@ public class OS1Assignment {
             System.out.println("Hex value:"+toHex);
             String binary=Long.toBinaryString(file_data.get(i));
             String virtual_address=intToString(Long.parseUnsignedLong(binary),32);
-            System.out.println("Bianry value: "+virtual_address);
+            System.out.println("Binary value: "+virtual_address);
             //virtual address is 32 bit long
             //hence there are 2^32 addresses in virtual address space
             // virtual page size and physical address given is 2^7
@@ -70,9 +71,11 @@ public class OS1Assignment {
                 ){
             for (int i=0;i<file_output.size();i++){
                 String output="0x"+file_output.get(i);
-                dataOutputStream.writeBytes(output);
+                byte[] data=output.getBytes(StandardCharsets.UTF_8);
+                outputStream.write(data);
+//                dataOutputStream.writeBytes(output);
             }
-            dataOutputStream.flush();
+//            dataOutputStream.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
