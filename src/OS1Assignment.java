@@ -22,7 +22,7 @@ public class OS1Assignment {
     public static void main(String [] args){
         String input_file=args[0];
         if(args.length==0){
-            System.out.println("Put input file as parameter");
+            System.out.println("Enter input file as parameter!");
         }
         //page_table[0]=Page Table
         //page_table[1]=Physical Frames
