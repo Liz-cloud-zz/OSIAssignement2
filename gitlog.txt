@@ -1,3 +1,15 @@
+commit a982d67d89ff9abd5c9a12a738992085b4a44468
+Author: Liz-cloud <mfnlin003@myuct.ac.za>
+Date:   Tue May 25 19:14:58 2021 +0200
+
+    README file
+
+commit aa2b402d6e559269154d9826ea072e57a6bc86f2
+Author: Liz-cloud <mfnlin003@myuct.ac.za>
+Date:   Tue May 25 18:49:32 2021 +0200
+
+    java docs complilation
+
 commit abf111fd51b81d7108ce8ce7e878e599f40fb276
 Author: Liz-cloud <mfnlin003@myuct.ac.za>
 Date:   Tue May 25 18:16:46 2021 +0200
