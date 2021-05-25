@@ -1,3 +1,4 @@
+
 import jdk.jfr.Unsigned;
 import sun.util.resources.cldr.om.LocaleNames_om;
 
@@ -9,7 +10,7 @@ import java.text.DecimalFormat;
 
 public class OS1Assignment {
     //left pad bianary number with zeros
-    static String intToString(long num, int digits) {
+    public static String intToString(long num, int digits) {
         assert digits > 0 : "Invalid number of digits";
         // create variable length array of zeros
         char[] zeros = new char[digits];
@@ -37,6 +38,7 @@ public class OS1Assignment {
                 long read_line=dataInputStream.readLong();
                 long reversed_long=Long.reverseBytes(read_line);
                 String long_string=String.valueOf(reversed_long);
+
                 long unsigned_long=Long.parseUnsignedLong(long_string);
                 file_data.add(reversed_long);
             }
@@ -45,7 +47,7 @@ public class OS1Assignment {
         }
         for( int i=0;i<file_data.size();i++){
             String toHex =Long.toHexString(file_data.get(i));
-            System.out.println("Hex value:"+toHex);
+            System.out.println("Virtual Address:"+toHex);
             String binary=Long.toBinaryString(file_data.get(i));
             String virtual_address=intToString(Long.parseUnsignedLong(binary),32);
             System.out.println("Binary value: "+virtual_address);
@@ -62,7 +64,7 @@ public class OS1Assignment {
             int page_num=page_table[0][index];
             String physical_address=Integer.toBinaryString(page_num)+virtual_address.substring(25);
             Long result =Long.parseUnsignedLong(physical_address,2);
-            System.out.println("physical address: "+Long.toHexString(result));
+            System.out.println("Physical address: "+Long.toHexString(result));
             file_output.add(Long.toHexString(result));
         }
         try (
@@ -70,12 +72,13 @@ public class OS1Assignment {
                 DataOutputStream dataOutputStream=new DataOutputStream(outputStream);
                 ){
             for (int i=0;i<file_output.size();i++){
-                String output="0x"+file_output.get(i);
-                byte[] data=output.getBytes(StandardCharsets.UTF_8);
-                outputStream.write(data);
-//                dataOutputStream.writeBytes(output);
+                String appended="00000000".substring(file_output.get(i).length())+file_output.get(i);
+                String output="0x"+appended;
+                //byte[] data=output.getBytes(StandardCharsets.UTF_8);
+
+                dataOutputStream.writeBytes(output+"\n");
             }
-//            dataOutputStream.flush();
+            dataOutputStream.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
